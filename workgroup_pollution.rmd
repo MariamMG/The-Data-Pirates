@@ -1,0 +1,31 @@
+---
+title: "workgroup_polution"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+Reading all data to R environment
+
+```{r cars}
+setwd("D:/Documentos/IE - MBD/1st Term/R Programming/workgroup/workgroup data")
+temp <- list.files(pattern = "*.csv")
+whole_data <- data.frame(day = character(), hour = character(), station = character(), parameter = character(), value = double())
+for(i in 1:length(temp)){
+  whole_data <- rbind(whole_data,read.csv(temp[i]))
+}
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
