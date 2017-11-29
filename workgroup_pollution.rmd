@@ -12,17 +12,20 @@ Reading all data to R environment
 
 ```{r cars}
 setwd("D:/Documentos/IE - MBD/1st Term/R Programming/workgroup/workgroup data")
-temp <- list.files(pattern = "*.csv")
-whole_data <- data.frame(day = character(), hour = character(), station = character(), parameter = character(), value = double())
-for(i in 1:length(temp)){
-  whole_data <- rbind(whole_data,read.csv(temp[i]))
+my_files <- list.files(pattern = "*.csv")
+my_data <- lapply(my_files, read.csv)
+for (i in 1:length(my_files)){
+  my_data[[i]]$year <- as.integer(substr(my_files[i],13,14))
+  my_data[[i]]$month <- as.integer(substr(my_files[i],16,17))
+}
+all_data <- data.frame()
+for (i in 1:length(my_data)){
+  all_data <- rbind(all_data,my_data[[i]])
 }
 
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
+## Graphics
 
 ```{r pressure, echo=FALSE}
 
